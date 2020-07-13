@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="350.0" minWidth="350.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jellybeanci.numberPi.Controller">
    <children>
-      <Rectangle fill="#333333" height="610" layoutX="0" layoutY="0" width="610">
+      <Rectangle fill="#333333" height="610" layoutX="0" layoutY="0" width="610.0">
 
       </Rectangle>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">

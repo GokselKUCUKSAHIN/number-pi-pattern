@@ -13,8 +13,9 @@ public class Main extends Application
     public void start(Stage stage) throws Exception
     {
         Parent root = FXMLLoader.load(getClass().getResource("MainUI.fxml"));
-        stage.setTitle("Number π");
-        stage.setScene(new Scene(root, 500, 500));
+        stage.setTitle("JellyBeanci");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root, 600, 600));
         stage.show();
     }
 

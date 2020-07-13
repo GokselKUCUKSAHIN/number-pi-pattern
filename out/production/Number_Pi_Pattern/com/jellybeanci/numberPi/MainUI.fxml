@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="350.0" minWidth="350.0"
+            prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jellybeanci.numberPi.Controller">
+    <children>
+        <Rectangle fill="#333333" height="610" layoutX="0" layoutY="0" width="610.0">
+
+        </Rectangle>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0"
+              AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <HBox alignment="CENTER" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                      prefHeight="23.0" prefWidth="490.0">
+                    <children>
+                        <Text fill="snow" strokeType="OUTSIDE" text="Number π">
+                            <font>
+                                <Font name="Times New Roman Bold" size="30.0"/>
+                            </font>
+                        </Text>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
+                    </VBox.margin>
+                    <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                    </padding>
+                </HBox>
+                <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="610.0"
+                      prefWidth="610.0" VBox.vgrow="ALWAYS" fx:id="rootPane">
+                    <children>
+                        <Canvas height="548.0" width="590.0" fx:id="canvas"/>
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

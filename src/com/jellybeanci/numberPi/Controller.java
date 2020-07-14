@@ -5,7 +5,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
-import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 
@@ -20,10 +19,10 @@ public class Controller
     @FXML
     Canvas canvas;
 
-    static ArrayList<Arc> arcs = new ArrayList<>();
-    static double x;
-    static double y;
-    static double arcR = 250;
+    protected static ArrayList<Arc> arcs = new ArrayList<>();
+    protected static double x;
+    protected static double y;
+    protected static double arcR = 250;
 
     @FXML
     private void initialize()

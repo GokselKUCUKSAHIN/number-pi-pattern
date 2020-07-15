@@ -1,6 +1,6 @@
 package com.jellybeanci.numberPi;
-
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -48,5 +48,16 @@ public class Controller
         }
         //
         rootPane.getChildren().addAll(cir);
+    }
+
+    public  static Point2D endPoint(double x, double y, double angle, double size)
+    {
+        x += (size * Math.cos(angleToRadian(angle)));
+        y -= (size * Math.sin(angleToRadian(angle)));
+        return new Point2D(x, y);
+    }
+    static double angleToRadian(double angle)
+    {
+        return (Math.PI / 180.0) * angle;
     }
 }

@@ -13,10 +13,28 @@ public class Main extends Application
     public void start(Stage stage) throws Exception
     {
         Parent root = FXMLLoader.load(getClass().getResource("MainUI.fxml"));
+        root.setOnKeyPressed(e -> {
+            switch (e.getCode())
+            {
+                case F1:
+                {
+                    //PLAY
+                    Controller.update.play();
+                    break;
+                }
+                case F2:
+                {
+                    //PAUSE
+                    Controller.update.pause();
+                    break;
+                }
+            }
+        });
         stage.setTitle("JellyBeanci");
         stage.setResizable(false);
         stage.setScene(new Scene(root, 600, 600));
         stage.show();
+        root.requestFocus();
     }
 
 

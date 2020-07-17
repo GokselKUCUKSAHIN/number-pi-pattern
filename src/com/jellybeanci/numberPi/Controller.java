@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class Controller
     //
     public static Timeline update;
     private static Color backcolor = Color.rgb(51, 51, 51);
+    private static Color forecolor;
     private static GraphicsContext gc;
     private static Point2D center;
     private static double hue = 0;
@@ -34,6 +36,11 @@ public class Controller
 
     @FXML
     Canvas canvas;
+
+    @FXML
+    Text numPi;
+    @FXML
+    Text num;
 
     protected static ArrayList<Arc> arcs = new ArrayList<>();
     protected static final int[] angleArray = new int[]{90, 54, 18, 342, 306, 270, 234, 198, 162, 126};
@@ -58,12 +65,11 @@ public class Controller
             e.printStackTrace();
         }
         //
-        update = new Timeline(new KeyFrame(Duration.millis(16), e -> {
-            // 60 FPS
+        update = new Timeline(new KeyFrame(Duration.millis(64), e -> {
             frame();
         }));
         update.setCycleCount(Timeline.INDEFINITE);
-        update.setRate(1);
+        update.setRate(10);
         update.setAutoReverse(false);
         //
         //
@@ -122,7 +128,8 @@ public class Controller
         gc.setStroke(color);
         gc.setLineWidth(0.5);
         //
-        double ang = Utils.calculateAngle(center.getX(), center.getY(), Math.abs(startPoint.getX() + endPoint.getX()) * 0.5, Math.abs(startPoint.getY() + endPoint.getY()) * 0.5);
+        Point2D midPoint = new Point2D(Math.abs(startPoint.getX() + endPoint.getX()) * 0.5, Math.abs(startPoint.getY() + endPoint.getY()) * 0.5);
+        double ang = Utils.calculateAngle(center, midPoint);
         Point2D tangent = endPoint(center.getX(), center.getY(), ang, arcR * 0.7);
         //
         gc.beginPath();
@@ -133,7 +140,6 @@ public class Controller
 
     private static void drawDot(double x, double y, Color color)
     {
-        gc.setStroke(color);
         gc.setLineWidth(1); //1
         //gc.strokeRect(x + 0.5, y + 0.5, 0.5, 0.5);
         gc.strokeOval(x + 0.5, y + 0.5, 0.3, 0.3);
@@ -143,6 +149,10 @@ public class Controller
     {
         if (piCount < number.count)
         {
+            numPi.setVisible(true);
+            num.setVisible(false);
+            numPi.setText(number.getDigits().get(piCount) + "");
+            //
             if (piCount == 0)
             {
                 prev = getPoint(0);
@@ -151,7 +161,7 @@ public class Controller
             // TODO ADD QUBIC SPLINES
             //drawDot(current.getX(), current.getY(), Color.color(Math.random(), Math.random(), Math.random()));
             //drawLine(prev, current, Color.color(Math.random(), Math.random(), Math.random()));
-            drawCurve(prev, current, Color.hsb(Rand.getDouble(360), 1, 1));
+            drawCurve(prev, current, forecolor);
             prev = current;
             piCount++;
         }
@@ -160,6 +170,7 @@ public class Controller
     protected Point2D getPoint(int count)
     {
         int dig = Integer.parseInt(number.getDigits().get(count) + "");
+        forecolor = Color.hsb(angleArray[dig], 1, 1);
         return endPoint(center.getX(), center.getY(), angleArray[dig] + Rand.getDouble(-14, 14), arcR * r);
     }
 }

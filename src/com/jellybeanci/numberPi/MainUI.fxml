@@ -31,6 +31,16 @@
                 <Pane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="610.0" prefWidth="610.0" VBox.vgrow="ALWAYS">
                     <children>
                         <Canvas fx:id="canvas" height="548.0" layoutX="4.0" width="590.0" />
+                        <Text fx:id="numPi" fill="snow" layoutX="261.0" layoutY="308.0" strokeType="OUTSIDE" text="π" textAlignment="CENTER" visible="false" wrappingWidth="75.392578125">
+                            <font>
+                                <Font name="Times New Roman Bold" size="100.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="num" fill="snow" layoutX="261.0" layoutY="308.0" strokeType="OUTSIDE" text="π" textAlignment="CENTER" visible="true" wrappingWidth="75.392578125">
+                            <font>
+                                <Font name="Times New Roman Bold" size="126.0" />
+                            </font>
+                        </Text>
                     </children>
                 </Pane>
             </children>

@@ -42,7 +42,7 @@ public class Number
 
     private static boolean isNumber(char chr)
     {
-        return (short) chr >= 48 && (short) chr <= 57;
+        return (short) chr <= 57 && (short) chr >= 48;
     }
 
     public ArrayList<Character> getDigits()

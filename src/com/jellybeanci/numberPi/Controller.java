@@ -40,6 +40,7 @@ public class Controller
     protected static double x;
     protected static double y;
     protected static double arcR = 250;
+    protected double r = 0.95;
     protected static Number number;
     private static int piCount = 0;
 
@@ -57,12 +58,12 @@ public class Controller
             e.printStackTrace();
         }
         //
-        update = new Timeline(new KeyFrame(Duration.millis(8), e -> {
+        update = new Timeline(new KeyFrame(Duration.millis(16), e -> {
             // 60 FPS
             frame();
         }));
         update.setCycleCount(Timeline.INDEFINITE);
-        update.setRate(2);
+        update.setRate(1);
         update.setAutoReverse(false);
         //
         //
@@ -116,25 +117,41 @@ public class Controller
         gc.strokeLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
     }
 
+    private static void drawCurve(Point2D startPoint, Point2D endPoint, Color color)
+    {
+        gc.setStroke(color);
+        gc.setLineWidth(0.5);
+        //
+        double ang = Utils.calculateAngle(center.getX(), center.getY(), Math.abs(startPoint.getX() + endPoint.getX()) * 0.5, Math.abs(startPoint.getY() + endPoint.getY()) * 0.5);
+        Point2D tangent = endPoint(center.getX(), center.getY(), ang, arcR * 0.7);
+        //
+        gc.beginPath();
+        gc.bezierCurveTo(startPoint.getX(), startPoint.getY(), tangent.getX(), tangent.getY(), endPoint.getX(), endPoint.getY());
+        gc.stroke();
+        //gc.strokeLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+    }
+
     private static void drawDot(double x, double y, Color color)
     {
         gc.setStroke(color);
-        gc.setLineWidth(10.0); //1
+        gc.setLineWidth(1); //1
         //gc.strokeRect(x + 0.5, y + 0.5, 0.5, 0.5);
-        gc.strokeOval(x + 0.5, y + 0.5, 1, 1);
+        gc.strokeOval(x + 0.5, y + 0.5, 0.3, 0.3);
     }
 
     protected void frame()
     {
         if (piCount < number.count)
         {
-            if(piCount == 0)
+            if (piCount == 0)
             {
                 prev = getPoint(0);
             }
             Point2D current = getPoint(piCount);
+            // TODO ADD QUBIC SPLINES
             //drawDot(current.getX(), current.getY(), Color.color(Math.random(), Math.random(), Math.random()));
-            drawLine(prev, current, Color.color(Math.random(), Math.random(), Math.random()));
+            //drawLine(prev, current, Color.color(Math.random(), Math.random(), Math.random()));
+            drawCurve(prev, current, Color.hsb(Rand.getDouble(360), 1, 1));
             prev = current;
             piCount++;
         }
@@ -143,6 +160,6 @@ public class Controller
     protected Point2D getPoint(int count)
     {
         int dig = Integer.parseInt(number.getDigits().get(count) + "");
-        return endPoint(center.getX(), center.getY(), angleArray[dig] + Rand.getDouble(-14, 14), arcR * 0.95);
+        return endPoint(center.getX(), center.getY(), angleArray[dig] + Rand.getDouble(-14, 14), arcR * r);
     }
 }
